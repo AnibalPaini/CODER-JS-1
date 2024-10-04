@@ -17,26 +17,39 @@ function mostrarMenu() {
     for (let i = 0; i < menu.length; i++) {
         console.log(menu[i].id + " - " + menu[i].nombre + " $" + menu[i].precio);
     }
-    console.log("\nIngrese el número del plato que desea (0 para salir).");
-}
+    console.log("Ingrese el número del plato que desea (0 para salir).");
+    console.log("10% OF SI SUPERA LOS $400.");
+};
 mostrarMenu();
 
 
 while (ordenar) {
-    let opcion = parseInt(prompt("\nIngrese el número del plato (0 para salir): "));
+    let opcion = parseInt(prompt("Ingrese el número del plato (0 para salir): "));
 
     if (opcion === 0) {
         ordenar = false;
-        alert("Gracias por su pedido. Total a pagar: $" + total);
+        alert("Gracias por su pedido! ");
     } else if (opcion >= 1 && opcion <= menu.length) {
         let platoSeleccionado = menu[opcion - 1]; 
         total += platoSeleccionado.precio; 
-        console.log("Has seleccionado: " + platoSeleccionado.nombre + ". Subtotal: $" + total);
+        console.log("Seleccion: " + platoSeleccionado.nombre + ". Subtotal: $" + total);
     } else {
         alert("Opción errónea, por favor intente de nuevo.");
     };
 };
 
-console.log("El total es: $",total);
+const promocion = (total) => {
+    let descuento=0;
+    if (total>400){
+        descuento=total*0.1;
+        total-=descuento;
+    }
 
+    console.log("Descuento: $",descuento);
+
+    return total;
+};
+
+total=promocion(total);
+console.log("El total es: $",total);
 
